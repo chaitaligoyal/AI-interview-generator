@@ -38,53 +38,68 @@ if st.button("Generate Questions"):
 
     if uploaded_file is None:
         st.warning("Please upload a resume.")
+    
+    else:
+        prompt = f"""
+        You are an expert technical interviewer.
 
-    prompt = f"""
-    You are an expert technical interviewer.
+        Review the resume and generate:
 
-    Review the resume and generate:
-
-    1.Technical interview Questions and Answers
-    2.HR interview Questions and Answers
+        1.Technical interview Questions and Answers
+        2.HR interview Questions and Answers
 
 
-    Candidate Role: {role}
-    Skills: {skills}
-    Experience Level: {level}
+        Candidate Role: {role}
+        Skills: {skills}
+        Experience Level: {level}
 
-    Resume Content: {resume_text}
+        Resume Content: {resume_text}
 
-    Also categorize technical and HR questions separately.
-    Give proper spacing and formatting.
+        Also categorize technical and HR questions separately.
+        Give proper spacing and formatting.
 
-    """
+        """
+
+    try:
+        response = client.chat.completions.create(
+            model = "openai/gpt-3.5-turbo",
+            messages =[
+                {"role": "user", "content": prompt}
+            ]
+        )
+        st.write(response.choices[0].message.content)
+
+    except Exception as e:
+        st.error(str(e))
+
 
 if st.button("Review my Resume"):
 
     if uploaded_file is None:
         st.warning("Please upload a resume.")
 
-    prompt = f"""
-    As an expert technical interviewer.
+    else:
+        prompt = f"""
+        As an expert technical interviewer.
 
-    Review the resume and generate:
+        Review the resume and generate:
 
-    1.Candidate strengths
-    2.Potential additions to resume to make it better
-    3.Resume score (1 to 10) with 10 being the best quality resume
+        1.Candidate strengths
+        2.Potential additions to resume to make it better
+        3.Resume score (1 to 10) with 10 being the best quality resume
 
-    Candidate Role: {role}
-    Skills: {skills}
-    Experience Level: {level}
+        Candidate Role: {role}
+        Skills: {skills}
+        Experience Level: {level}
 
-    Resume Content: {resume_text}
+        Resume Content: {resume_text}
 
-    Format the response using:
-    - clear headings
-    - bullet points
-    - proper spacing
+        Format the response using:
+        - clear headings
+        - bullet points
+        - proper spacing
 
-    """
+        """
 
     try:
         response = client.chat.completions.create(
