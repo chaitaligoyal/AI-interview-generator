@@ -1,7 +1,7 @@
 import streamlit as st
 from openai import OpenAI
 from dotenv import load_dotenv
-from pypdf import PDfReader
+from pypdf import PdfReader
 import os
 
 load_dotenv()
@@ -29,7 +29,7 @@ uploaded_file = st.file_uploader(
 resume_text = ""
 
 if uploaded_file is not None:
-    pdf_reader = PDfReader(uploaded_file)
+    pdf_reader = PdfReader(uploaded_file)
 
     for page in pdf_reader.pages:
         resume_text += page.extract_text()
