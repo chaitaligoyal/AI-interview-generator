@@ -61,7 +61,7 @@ if st.button("Generate Questions"):
 if st.button("Review my Resume"):
 
     if uploaded_file is None:
-    st.warning("Please upload a resume.")
+        st.warning("Please upload a resume.")
 
     prompt = f"""
     As an expert technical interviewer.
