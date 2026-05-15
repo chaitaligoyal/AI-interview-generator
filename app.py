@@ -47,14 +47,15 @@ if st.button("Generate Questions"):
     1.Technical interview Questions and Answers
     2.HR interview Questions and Answers
 
-    Also categorize technical and HR questions separately.
-    Give proper spacing and formatting.
 
     Candidate Role: {role}
     Skills: {skills}
     Experience Level: {level}
 
     Resume Content: {resume_text}
+
+    Also categorize technical and HR questions separately.
+    Give proper spacing and formatting.
 
     """
 
